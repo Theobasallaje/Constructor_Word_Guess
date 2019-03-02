@@ -2,10 +2,11 @@ var inquirer = require('inquirer');
 var Word = require("./Word");
 var wordArr = ["banana", "game", "apple", "computer"];
 var randWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-var guessNum = 4;
+var guessNum = 5;
+var inRandWord = false;
+var gameWon = false;
 
 console.log(randWord);
-console.log(this.isGuessed); 
 
 var gameWord = new Word();
 gameWord.buildLetters(randWord);
@@ -20,32 +21,52 @@ function play() {
       }
     ])
     .then(answers => {
-      // check if you have any guess left
-      // check if you win or lose
-      // put if to check:
-      if (guessNum > 0) {
-        // console.log(answers); // answers is an object containing the letters that the user has guessed
-        // for (var i=0; i<randWord.length; i++){
-        //   if (randWord[i] === answers.guess){
-        //     console.log("Correct!")
-        //   } else {
-        //     console.log(`Incorrect! You Have ${guessNum} Guesses Remaining!`);
-        //   }
-        // }
-          // if (!this.isGuessed){
-          //   console.log("Correct!")
-          //   console.log(this.isGuessed); 
-          //   // console.log(Word[0]); 
-
-          // } else if (this.isGuessed){
-          //   console.log(`Incorrect! You Have ${guessNum} Guesses Remaining!`);
-          // }
+      // Still need to check if you win or lose
+      if (!gameWon) {
         gameWord.guessLetter(answers.guess);
+        for (var i=0; i<randWord.length; i++){
+          if (randWord[i]===answers.guess){
+            inRandWord = true;
+            break;
+          } else {
+            inRandWord = false;
+          }
+        }
+
+        if (inRandWord){
+          console.log("Correct!")
+        } else if (!inRandWord && guessNum != 1) {
+          console.log(`Incorrect! you have ${guessNum} guesses left!`)
+          guessNum--;
+        } else if (guessNum = 1){
+          console.log("out of guesses")
+          for (var i=0; i<gameWord.getWordArr().length; i++){
+            if (!(gameWord.getWordArr()[i] == "_")){
+              gameWon = true;
+              break;
+            } else {
+              gameWon = false;
+            }
+          }
+        }
+
+        if ((gameWon) && (guessNum == 0)){
+          console.log("You Won!");
+        } else if ((!gameWon) && (guessNum == 0)){
+          console.log("You Lose!");
+        }
+
         gameWord.display();
+        // console.log(gameWord.getWordArr().length);
+        // console.log(gameWord.checkUnderScore());
+        console.log(guessNum);
         play()
-        guessNum--;
       }
     });
 }
+
+// function checkLetter(){
+
+// }
 
 play()

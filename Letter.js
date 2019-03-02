@@ -10,10 +10,10 @@ function Letter(letter) {
     }
     this.guess = function (char) {
         if (char === this.letter) {
-            console.log("correct");
+            // console.log("correct"); // shows for EVERY spot that is correct in the word 
             this.isGuessed = true;
         } else {
-            console.log("incorrect");
+            // console.log("incorrect"); // shows for EVERY spot that is incorrect in the word 
         }
     }
 }
