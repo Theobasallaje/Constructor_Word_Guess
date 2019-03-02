@@ -12,7 +12,9 @@ function Letter(letter) {
         if (char === this.letter) {
             // console.log("correct"); // shows for EVERY spot that is correct in the word 
             this.isGuessed = true;
+            return true;
         } else {
+            return false;
             // console.log("incorrect"); // shows for EVERY spot that is incorrect in the word 
         }
     }
