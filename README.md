@@ -1,6 +1,6 @@
 # CLI Word Guess Game!
 
-# To play, clone this repo and run npm install to intall all the relavent packages 
+# To play, clone this repo and run npm install to intall all the relevant packages 
 
 # You will be guessing from a randonly selected word.
 
