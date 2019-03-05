@@ -46,6 +46,12 @@ function Word(randWord){
         //check every letter and return true if all letters have been guessed
     }
 
+    this.gameWin = function() {
+        if (this.isFinished = true){
+            return "You Win!";
+        } 
+    }
+
     // this.checkUnderScore = function(){
     //     for (var i=0; i<word.length; i++){
     //         if (word[i] === "_"){
